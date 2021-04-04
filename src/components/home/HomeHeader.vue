@@ -1,8 +1,8 @@
 <template>
   <ion-toolbar class="home-toolbar">
     <ion-buttons slot="start">
-      <ion-button color="secondary">
-        <ion-icon slot="icon-only" :icon="menu"></ion-icon>
+      <ion-button @click="openMenu" color="secondary">
+        <ion-icon slot="icon-only" :icon="icons.menu"></ion-icon>
       </ion-button>
     </ion-buttons>
 
@@ -25,7 +25,7 @@
 
     <ion-buttons slot="end">
       <ion-button color="secondary">
-        <ion-icon slot="icon-only" :icon="personCircle"></ion-icon>
+        <ion-icon slot="icon-only" :icon="icons.person"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -47,7 +47,7 @@
   } from "@ionic/vue";
   import { menu, personCircle } from "ionicons/icons";
 
-  //   type selectionType = number | null;
+  import useMenu from "@/compositions/useMenu";
 
   export default defineComponent({
     emits: ["update:modelValue"],
@@ -75,12 +75,20 @@
         emit("update:modelValue", selectedCityIndex.value);
       };
 
-      return {
+      const { openMenu, closeMenu } = useMenu();
+
+      const icons = {
         menu,
-        personCircle,
+        person: personCircle,
+      };
+
+      return {
+        icons,
         selectedCityIndex,
         cities,
         emitUpdate,
+        openMenu,
+        closeMenu,
       };
     },
   });

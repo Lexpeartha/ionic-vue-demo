@@ -1,19 +1,19 @@
 <template>
-  <blank-layout page-title="Housyes">
+  <basic-layout page-title="Housyes">
     <home-header v-model="selectedCityIndex"></home-header>
-  </blank-layout>
+  </basic-layout>
 </template>
 
 <script lang="ts">
   import { defineComponent } from "vue";
 
-  import BlankLayout from "@/layouts/Blank.vue";
+  import BasicLayout from "@/layouts/Basic.vue";
   import HomeHeader from "@/components/home/HomeHeader.vue";
 
   export default defineComponent({
     name: "Home",
     components: {
-      BlankLayout,
+      BasicLayout,
       HomeHeader,
     },
     data() {
