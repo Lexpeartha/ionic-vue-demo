@@ -9,7 +9,7 @@
       </template>
     </app-header>
 
-    <ion-content class="ion-padding" :fullscreen="true">
+    <ion-content :fullscreen="true">
       <slot />
     </ion-content>
   </ion-page>

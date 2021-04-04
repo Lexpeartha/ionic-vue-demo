@@ -1,31 +1,23 @@
 <template>
-  <default-layout page-title="Housyes">
-    <template #actions-end>
-      <ion-button router-link="/search" router-direction="right">
-        <ion-icon slot="icon-only" :icon="search"></ion-icon>
-      </ion-button>
-    </template>
-
-    This is home
-  </default-layout>
+  <blank-layout page-title="Housyes">
+    <home-header></home-header>
+  </blank-layout>
 </template>
 
 <script lang="ts">
   import { defineComponent } from "vue";
-  import { IonButton, IonIcon } from "@ionic/vue";
-  import { search } from "ionicons/icons";
 
-  import DefaultLayout from "@/layouts/Default.vue";
+  import BlankLayout from "@/layouts/Blank.vue";
+  import HomeHeader from "@/components/home/HomeHeader.vue";
 
   export default defineComponent({
     components: {
-      DefaultLayout,
-      IonButton,
-      IonIcon,
+      BlankLayout,
+      HomeHeader,
     },
     data() {
       return {
-        search,
+        selectedCityIndex: null,
       };
     },
   });
