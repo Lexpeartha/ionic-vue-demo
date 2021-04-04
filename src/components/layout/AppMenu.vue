@@ -6,36 +6,69 @@
     :swipe-gesture="true"
     side="start"
   >
-    <ion-card class="profile-card" color="primary">
-      <ion-card-header class="profile-header">
-        <ion-card-title>Username</ion-card-title>
-        <ion-card-subtitle>Premium membership</ion-card-subtitle>
-      </ion-card-header>
-
-      <ion-icon class="profile-picture" :icon="icons.profile"></ion-icon>
-    </ion-card>
-
     <ion-content>
+      <ion-card class="profile-card" color="primary">
+        <ion-card-header class="profile-header">
+          <ion-card-title>Username</ion-card-title>
+          <ion-card-subtitle>Free membership</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-icon class="profile-picture" :icon="icons.profile"></ion-icon>
+      </ion-card>
+
       <ion-list>
-        <ion-item-divider class="ion-padding-vertical">
-          <ion-label>Quick access menu</ion-label>
-        </ion-item-divider>
+        <ion-list-header class="ion-padding-top">
+          <ion-label class="menu-label" color="secondary">
+            Quick access menu
+          </ion-label>
+        </ion-list-header>
 
-        <ion-item v-for="(item, $index) in quickMenuItems" :key="$index">
+        <ion-item
+          button
+          detail="false"
+          lines="none"
+          v-for="(item, $index) in quickMenuItems"
+          :key="$index"
+        >
           <ion-label color="primary">{{ item.name }}</ion-label>
-          <ion-icon slot="start" :icon="item.icon"></ion-icon>
+          <ion-icon slot="start" color="primary" :icon="item.icon"></ion-icon>
         </ion-item>
+      </ion-list>
 
-        <ion-item-divider class="ion-padding-vertical">
-          <ion-label>Navigate app</ion-label>
-        </ion-item-divider>
+      <ion-list>
+        <ion-list-header class="ion-padding-top">
+          <ion-label class="menu-label" color="secondary">
+            Navigate app
+          </ion-label>
+        </ion-list-header>
 
-        <ion-item v-for="(item, $index) in menuItems" :key="$index">
-          <ion-label color="primary">{{ item.name }}</ion-label>
-          <ion-icon slot="start" :icon="item.icon"></ion-icon>
+        <ion-item
+          button
+          detail="false"
+          lines="none"
+          v-for="(item, $index) in menuItems"
+          :key="$index"
+        >
+          <ion-label lines="none" color="primary">{{ item.name }}</ion-label>
+          <ion-icon slot="start" color="primary" :icon="item.icon"></ion-icon>
         </ion-item>
       </ion-list>
     </ion-content>
+    <ion-footer translucent>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button detail="false">
+            <ion-icon :icon="icons.profile"></ion-icon>
+            <ion-label class="username-label">Username</ion-label>
+          </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button detail="false">
+            <ion-icon slot="icon-only" :icon="icons.settings"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
   </ion-menu>
 </template>
 
@@ -51,7 +84,7 @@
     IonLabel,
     IonIcon,
     IonList,
-    IonItemDivider,
+    IonListHeader,
     IonItem,
   } from "@ionic/vue";
   import {
@@ -60,6 +93,8 @@
     information,
     personCircle,
     eye,
+    map,
+    settings,
     save,
   } from "ionicons/icons";
 
@@ -74,7 +109,7 @@
       IonLabel,
       IonIcon,
       IonList,
-      IonItemDivider,
+      IonListHeader,
       IonItem,
     },
     setup() {
@@ -83,6 +118,8 @@
         search,
         info: information,
         profile: personCircle,
+        explore: map,
+        settings,
         eye,
         save,
       };
@@ -102,6 +139,10 @@
         {
           name: "Home",
           icon: icons.home,
+        },
+        {
+          name: "Explore",
+          icon: icons.explore,
         },
         {
           name: "Search",
@@ -131,5 +172,13 @@
     width: 4em;
     height: 4em;
     margin: auto 0;
+  }
+
+  .menu-label {
+    margin: auto 0;
+  }
+
+  .username-label {
+    margin-left: 0.5rem;
   }
 </style>
