@@ -25,7 +25,7 @@
 
     <ion-buttons slot="end">
       <ion-button color="secondary">
-        <ion-icon slot="icon-only" :icon="icons.person"></ion-icon>
+        <ion-icon slot="icon-only" :icon="icons.profile"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -79,7 +79,7 @@
 
       const icons = {
         menu,
-        person: personCircle,
+        profile: personCircle,
       };
 
       return {
