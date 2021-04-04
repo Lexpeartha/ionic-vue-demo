@@ -1,6 +1,6 @@
 <template>
   <blank-layout page-title="Housyes">
-    <home-header></home-header>
+    <home-header v-model="selectedCityIndex"></home-header>
   </blank-layout>
 </template>
 
@@ -11,6 +11,7 @@
   import HomeHeader from "@/components/home/HomeHeader.vue";
 
   export default defineComponent({
+    name: "Home",
     components: {
       BlankLayout,
       HomeHeader,

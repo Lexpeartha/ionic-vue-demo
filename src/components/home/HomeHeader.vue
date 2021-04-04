@@ -8,6 +8,7 @@
 
     <ion-select
       v-model="selectedCityIndex"
+      @ionChange="emitUpdate"
       class="city-selection"
       placeholder="Select city"
       ok-text="Select"
@@ -28,10 +29,14 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+  <!-- 
+      :modelValue="selectedCityIndex"
+      @update:modelValue="selectedCityIndex = $event"
+    -->
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue";
+  import { defineComponent, ref } from "vue";
   import {
     IonToolbar,
     IonButton,
@@ -42,9 +47,17 @@
   } from "@ionic/vue";
   import { menu, personCircle } from "ionicons/icons";
 
-  type selectionType = number | null;
+  //   type selectionType = number | null;
 
   export default defineComponent({
+    emits: ["update:modelValue"],
+    props: {
+      modelValue: {
+        type: Number,
+        required: false,
+        default: null,
+      },
+    },
     components: {
       IonToolbar,
       IonButton,
@@ -53,12 +66,21 @@
       IonSelect,
       IonSelectOption,
     },
-    data() {
+    setup(props, { emit }) {
+      const cities = ["Belgrade", "Novi Sad", "Zrenjanin", "Loznica"];
+
+      const selectedCityIndex = ref(props.modelValue);
+
+      const emitUpdate = () => {
+        emit("update:modelValue", selectedCityIndex.value);
+      };
+
       return {
         menu,
         personCircle,
-        selectedCityIndex: null as selectionType,
-        cities: ["Belgrade", "Novi Sad", "Zrenjanin", "Loznica"],
+        selectedCityIndex,
+        cities,
+        emitUpdate,
       };
     },
   });
