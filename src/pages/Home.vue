@@ -1,20 +1,20 @@
 <template>
-  <basic-layout page-title="Housyes">
-    <home-header v-model="selectedCityIndex"></home-header>
-  </basic-layout>
+  <ion-page>
+
+  </ion-page>
+  <home-header v-model="selectedCityIndex"></home-header>
 </template>
 
 <script lang="ts">
   import { defineComponent } from "vue";
-
-  import BasicLayout from "@/layouts/Basic.vue";
+  import { IonPage } from "@ionic/vue";
   import HomeHeader from "@/components/home/HomeHeader.vue";
 
   export default defineComponent({
     name: "Home",
     components: {
-      BasicLayout,
       HomeHeader,
+      IonPage
     },
     data() {
       return {

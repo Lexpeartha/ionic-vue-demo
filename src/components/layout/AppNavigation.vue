@@ -1,34 +1,23 @@
 <template>
-  <ion-footer>
-    <ion-tabs>
-      <ion-tab-bar :selected-tab="selectedTabBar">
-        <ion-tab-button
-          v-for="(navItem, $index) in navigationMenu"
-          :layout="selectedTabBar == navItem.name ? 'icon-top' : 'label-hide'"
-          @click="handleTabButtonClick(navItem)"
-          :key="$index"
-          :tab="navItem.name"
-          :href="navItem.route"
-        >
-          <ion-icon :icon="navItem.icon"></ion-icon>
-          <ion-label>{{ navItem.name }}</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
-  </ion-footer>
+  <ion-tab-bar slot="bottom" :selected-tab="selectedTabBar">
+    <ion-tab-button
+      v-for="(navItem, $index) in navigationMenu"
+      :layout="selectedTabBar == navItem.name ? 'icon-top' : 'label-hide'"
+      @click="handleTabButtonClick(navItem)"
+      :key="$index"
+      :tab="navItem.name"
+      :href="navItem.route"
+    >
+      <ion-icon :icon="navItem.icon"></ion-icon>
+      <ion-label>{{ navItem.name }}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
 </template>
 
 <script lang="ts">
   import { ref, defineComponent } from "vue";
   import { useRouter } from "vue-router";
-  import {
-    IonFooter,
-    IonTabs,
-    IonTabBar,
-    IonTabButton,
-    IonIcon,
-    IonLabel,
-  } from "@ionic/vue";
+  import { IonTabBar, IonTabButton, IonIcon, IonLabel } from "@ionic/vue";
   import { home, map, search } from "ionicons/icons";
 
   interface NavigationItem {
@@ -39,8 +28,6 @@
 
   export default defineComponent({
     components: {
-      IonFooter,
-      IonTabs,
       IonTabBar,
       IonTabButton,
       IonIcon,
@@ -59,17 +46,17 @@
         {
           name: "Home",
           icon: icons.home,
-          route: "/home",
+          route: "/app",
         },
         {
           name: "Explore",
           icon: icons.explore,
-          route: "/explore",
+          route: "/app/explore",
         },
         {
           name: "Search",
           icon: icons.search,
-          route: "/search",
+          route: "/app/search",
         },
       ];
 

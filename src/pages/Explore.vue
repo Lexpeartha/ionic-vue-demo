@@ -1,15 +1,14 @@
 <template>
-  <basic-layout>
+  <ion-page>
     <h2>This is explore</h2>
-  </basic-layout>
+  </ion-page>
 </template>
 
 <script lang="ts">
   import { defineComponent } from "vue";
-
-  import BasicLayout from "@/layouts/Basic.vue";
+  import { IonPage } from "@ionic/vue";
 
   export default defineComponent({
-    components: { BasicLayout },
+    components: { IonPage },
   });
 </script>
