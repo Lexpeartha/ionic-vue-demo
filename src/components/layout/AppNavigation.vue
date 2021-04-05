@@ -1,30 +1,32 @@
 <template>
-  <ion-tab-bar slot="bottom" :selected-tab="selectedTabBar">
-    <ion-tab-button
-      v-for="(navItem, $index) in navigationMenu"
-      :layout="selectedTabBar == navItem.name ? 'icon-top' : 'label-hide'"
-      @click="handleTabButtonClick(navItem)"
-      :key="$index"
-      :tab="navItem.name"
-      :href="navItem.route"
-    >
-      <ion-icon :icon="navItem.icon"></ion-icon>
-      <ion-label>{{ navItem.name }}</ion-label>
+  <ion-tab-bar color="primary" slot="bottom" :selected-tab="selectedTabBar">
+    <ion-tab-button tab="home" href="/app">
+      <ion-icon :icon="icons.home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="explore" href="/app/explore">
+      <ion-icon :icon="icons.explore"></ion-icon>
+      <ion-label>Explore</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="search" href="/app/search">
+      <ion-icon :icon="icons.search"></ion-icon>
+      <ion-label>Search</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </template>
 
 <script lang="ts">
   import { ref, defineComponent } from "vue";
-  import { useRouter } from "vue-router";
   import { IonTabBar, IonTabButton, IonIcon, IonLabel } from "@ionic/vue";
   import { home, map, search } from "ionicons/icons";
 
-  interface NavigationItem {
-    name: string;
-    icon: string;
-    route: string;
-  }
+  // interface NavigationItem {
+  //   name: string;
+  //   icon: string;
+  //   route: string;
+  // }
 
   export default defineComponent({
     components: {
@@ -34,7 +36,7 @@
       IonLabel,
     },
     setup() {
-      const router = useRouter();
+      // const router = useRouter();
 
       const icons = {
         home,
@@ -42,43 +44,44 @@
         search,
       };
 
-      const navigationMenu: NavigationItem[] = [
-        {
-          name: "Home",
-          icon: icons.home,
-          route: "/app",
-        },
-        {
-          name: "Explore",
-          icon: icons.explore,
-          route: "/app/explore",
-        },
-        {
-          name: "Search",
-          icon: icons.search,
-          route: "/app/search",
-        },
-      ];
+      /* Because of an issue, method below is not possible: https://github.com/ionic-team/ionic-framework/issues/22847 */
 
-      const selectedTabBar = ref(navigationMenu[0].name);
+      const selectedTabBar = ref("home");
+
+      // const navigationMenu: NavigationItem[] = [
+      //   {
+      //     name: "Home",
+      //     icon: icons.home,
+      //     route: "/app",
+      //   },
+      //   {
+      //     name: "Explore",
+      //     icon: icons.explore,
+      //     route: "/app/explore",
+      //   },
+      //   {
+      //     name: "Search",
+      //     icon: icons.search,
+      //     route: "/app/search",
+      //   },
+      // ];
 
       const changeActiveTabTo = (newTab: string) => {
         selectedTabBar.value = newTab;
       };
 
-      const navigateToTabLink = (route: string) => {
-        router.push({ path: route });
-      };
+      // const navigateToTabLink = (route: string) => {
+      //   router.push({ path: route });
+      // };
 
-      const handleTabButtonClick = (navItem: NavigationItem) => {
-        changeActiveTabTo(navItem.name);
-        navigateToTabLink(navItem.route);
-      };
+      // const handleTabButtonClick = (navItem: NavigationItem) => {
+      //   changeActiveTabTo(navItem.name);
+      //   navigateToTabLink(navItem.route);
+      // };
 
       return {
-        navigationMenu,
         selectedTabBar,
-        handleTabButtonClick,
+        changeActiveTabTo,
         icons,
       };
     },

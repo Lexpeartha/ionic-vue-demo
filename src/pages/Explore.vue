@@ -1,14 +1,16 @@
 <template>
-  <ion-page>
-    <h2>This is explore</h2>
-  </ion-page>
+  <content-layout>
+    <ion-label>This is explore</ion-label>
+  </content-layout>
 </template>
 
 <script lang="ts">
   import { defineComponent } from "vue";
-  import { IonPage } from "@ionic/vue";
+  import { IonLabel } from "@ionic/vue";
+
+  import ContentLayout from "@/layouts/Content.vue";
 
   export default defineComponent({
-    components: { IonPage },
+    components: { ContentLayout, IonLabel },
   });
 </script>

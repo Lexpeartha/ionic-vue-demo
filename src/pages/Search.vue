@@ -1,5 +1,5 @@
 <template>
-  <ion-page>
+  <content-layout>
     <ion-item>
       <ion-label color="primary" position="floating"
         >Search for a city</ion-label
@@ -13,20 +13,22 @@
         placeholder="ex. London"
       />
     </ion-item>
-  </ion-page>
+  </content-layout>
 </template>
 
 <script lang="ts">
   import { defineComponent } from "vue";
-  import { IonInput, IonLabel, IonItem, IonPage } from "@ionic/vue";
+  import { IonInput, IonLabel, IonItem } from "@ionic/vue";
   import { searchOutline } from "ionicons/icons";
+
+  import ContentLayout from "@/layouts/Content.vue";
 
   export default defineComponent({
     components: {
+      ContentLayout,
       IonInput,
       IonLabel,
       IonItem,
-      IonPage,
     },
     data() {
       return {
