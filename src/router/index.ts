@@ -6,15 +6,16 @@ import BasicLayout from "@/layouts/Basic.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    redirect: "/app",
+    redirect: "/app/home",
   },
   {
     path: "/app",
     name: "App",
+    redirect: "/app/home",
     component: BasicLayout,
     children: [
       {
-        path: "",
+        path: "home",
         name: "Home",
         component: () => import("@/pages/Home.vue"),
       },
@@ -27,6 +28,11 @@ const routes: Array<RouteRecordRaw> = [
         path: "search",
         name: "Search",
         component: () => import("@/pages/Search.vue"),
+      },
+      {
+        path: "profile",
+        name: "Profile",
+        component: () => import("@/pages/Profile.vue"),
       },
     ],
   },

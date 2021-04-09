@@ -1,6 +1,6 @@
 <template>
-  <ion-tab-bar color="primary" slot="bottom" :selected-tab="selectedTabBar">
-    <ion-tab-button tab="home" href="/app">
+  <ion-tab-bar color="primary" slot="bottom">
+    <ion-tab-button tab="home" href="/app/home">
       <ion-icon :icon="icons.home"></ion-icon>
       <ion-label>Home</ion-label>
     </ion-tab-button>
@@ -14,13 +14,18 @@
       <ion-icon :icon="icons.search"></ion-icon>
       <ion-label>Search</ion-label>
     </ion-tab-button>
+
+    <ion-tab-button tab="profile" href="/app/profile">
+      <ion-icon :icon="icons.profile"></ion-icon>
+      <ion-label>Profile</ion-label>
+    </ion-tab-button>
   </ion-tab-bar>
 </template>
 
 <script lang="ts">
   import { ref, defineComponent } from "vue";
   import { IonTabBar, IonTabButton, IonIcon, IonLabel } from "@ionic/vue";
-  import { home, map, search } from "ionicons/icons";
+  import { home, map, search, personCircle } from "ionicons/icons";
 
   // interface NavigationItem {
   //   name: string;
@@ -42,6 +47,7 @@
         home,
         explore: map,
         search,
+        profile: personCircle,
       };
 
       /* Because of an issue, method below is not possible: https://github.com/ionic-team/ionic-framework/issues/22847 */

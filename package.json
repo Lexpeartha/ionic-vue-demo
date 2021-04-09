@@ -7,9 +7,12 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "android": "ionic capacitor build android",
+    "android:watch": "ionic capacitor build android --watch"
   },
   "dependencies": {
+    "@capacitor/android": "^2.4.7",
     "@capacitor/core": "2.4.7",
     "@ionic/vue": "^5.4.0",
     "@ionic/vue-router": "^5.4.0",

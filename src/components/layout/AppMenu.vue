@@ -7,7 +7,7 @@
     side="start"
   >
     <ion-content>
-      <ion-card class="profile-card" color="primary">
+      <ion-card class="profile-card ion-padding-end" color="primary">
         <ion-card-header class="profile-header">
           <ion-card-title>Username</ion-card-title>
           <ion-card-subtitle>Free membership</ion-card-subtitle>
@@ -44,6 +44,8 @@
 
         <ion-item
           button
+          @click="sayHi"
+          router-direction="/app/search"
           detail="false"
           lines="none"
           v-for="(item, $index) in menuItems"
@@ -57,13 +59,13 @@
     <ion-footer translucent>
       <ion-toolbar>
         <ion-buttons slot="start">
-          <ion-button detail="false">
+          <ion-button color="secondary" detail="false">
             <ion-icon :icon="icons.profile"></ion-icon>
             <ion-label class="username-label">Username</ion-label>
           </ion-button>
         </ion-buttons>
         <ion-buttons slot="end">
-          <ion-button detail="false">
+          <ion-button color="secondary" detail="false">
             <ion-icon slot="icon-only" :icon="icons.settings"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -147,25 +149,34 @@
         {
           name: "Home",
           icon: icons.home,
+          route: "/app/home",
         },
         {
           name: "Explore",
           icon: icons.explore,
+          route: "/app/explore",
         },
         {
           name: "Search",
           icon: icons.search,
+          route: "/app/search",
         },
         {
           name: "Profile",
           icon: icons.info,
+          route: "/app/profile",
         },
       ];
+
+      const sayHi = () => {
+        console.log("You clicked item!");
+      };
 
       return {
         quickMenuItems,
         menuItems,
         icons,
+        sayHi,
       };
     },
   });
@@ -174,6 +185,7 @@
 <style scoped>
   .profile-card {
     display: flex;
+    justify-content: space-between;
   }
 
   .profile-picture {
@@ -183,6 +195,7 @@
   }
 
   .menu-label {
+    font-size: 1.35rem;
     margin: auto 0;
   }
 
