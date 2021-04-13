@@ -1,12 +1,9 @@
 <template>
-  <ion-page id="main-content">
+  <ion-page>
     <app-menu></app-menu>
     <ion-tabs>
-      <app-navigation></app-navigation>
+      <app-navigation id="main-content"></app-navigation>
     </ion-tabs>
-    <!-- <ion-content>
-      <slot></slot>
-    </ion-content> -->
   </ion-page>
 </template>
 

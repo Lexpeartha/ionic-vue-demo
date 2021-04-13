@@ -44,8 +44,7 @@
 
         <ion-item
           button
-          @click="sayHi"
-          router-direction="/app/search"
+          @click="navigateToRoute(item.route)"
           detail="false"
           lines="none"
           v-for="(item, $index) in menuItems"
@@ -76,6 +75,7 @@
 
 <script lang="ts">
   import { defineComponent } from "vue";
+  import { useRouter } from "vue-router";
   import {
     IonMenu,
     IonCard,
@@ -104,6 +104,8 @@
     save,
   } from "ionicons/icons";
 
+  import useMenu from "@/compositions/useMenu";
+
   export default defineComponent({
     components: {
       IonMenu,
@@ -123,6 +125,8 @@
       IonItem,
     },
     setup() {
+      const router = useRouter();
+
       const icons = {
         home,
         search,
@@ -168,15 +172,18 @@
         },
       ];
 
-      const sayHi = () => {
-        console.log("You clicked item!");
+      const { closeMenu } = useMenu();
+
+      const navigateToRoute = (routeName: string) => {
+        router.replace({ path: routeName });
+        closeMenu();
       };
 
       return {
         quickMenuItems,
         menuItems,
         icons,
-        sayHi,
+        navigateToRoute,
       };
     },
   });
