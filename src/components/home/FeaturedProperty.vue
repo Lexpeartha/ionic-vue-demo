@@ -19,10 +19,10 @@
   import { useStore } from "vuex";
   import { IonLabel } from "@ionic/vue";
 
-  import PropertyCard from "@/components/ui/PropertyCardVertical.vue";
+  import PropertyCardVertical from "@/components/ui/PropertyCardVertical.vue";
 
   export default defineComponent({
-    components: { IonLabel, PropertyCard },
+    components: { IonLabel, PropertyCard: PropertyCardVertical },
     setup() {
       const store = useStore();
 

@@ -11,7 +11,9 @@
         <h2 class="name">{{ name }}</h2>
       </ion-text>
       <div class="card-info">
-        <h5 class="location">{{ location }}</h5>
+        <ion-text color="secondary">
+          <h5 class="location">{{ location }}</h5>
+        </ion-text>
         <div class="rating">
           <ion-icon
             color="warning"
@@ -22,15 +24,16 @@
         </div>
       </div>
     </div>
-    <ion-chip class="rent-chip" color="secondary">
+    <div class="rent-chip">
       <ion-label color="light">{{ rentMode }}</ion-label>
-    </ion-chip>
-    <ion-icon
-      :color="isLikedByUser ? 'danger' : ''"
-      @click="toggleLikeOnProperty"
-      class="heart-icon"
-      :icon="icons.heart"
-    ></ion-icon>
+    </div>
+    <div class="heart-chip" @click="toggleLikeOnProperty">
+      <ion-icon
+        :color="isLikedByUser ? 'danger' : ''"
+        class="heart-icon"
+        :icon="icons.heart"
+      ></ion-icon>
+    </div>
   </ion-card>
 </template>
 
@@ -42,7 +45,6 @@
     IonCardContent,
     IonIcon,
     IonText,
-    IonChip,
     IonLabel,
   } from "@ionic/vue";
   import { heart, star } from "ionicons/icons";
@@ -89,7 +91,6 @@
       IonCardContent,
       IonIcon,
       IonText,
-      IonChip,
       IonLabel,
     },
     setup(props) {
@@ -142,8 +143,15 @@
 
   .rent-chip {
     position: absolute;
-    top: 1.2em;
-    left: 1.2em;
+    text-transform: capitalize;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 25%;
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    top: 1.7em;
+    left: 1.6em;
   }
 
   .name {
@@ -151,7 +159,7 @@
   }
 
   .location {
-    font-weight: 200;
+    font-weight: 300;
     font-size: 0.85em;
   }
 
@@ -160,14 +168,26 @@
     gap: 0.45em;
   }
 
+  .rating p {
+    margin: auto auto;
+  }
+
   .star-icon {
     margin: auto auto;
   }
 
   .heart-icon {
-    position: absolute;
     font-size: 1.25em;
+    margin: auto;
+  }
+
+  .heart-chip {
+    position: absolute;
+    display: grid;
     top: 1.5em;
     right: 1.5em;
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 0.2em;
+    border-radius: 100%;
   }
 </style>
