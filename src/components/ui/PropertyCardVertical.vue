@@ -27,6 +27,7 @@
     </ion-chip>
     <ion-icon
       :color="isLikedByUser ? 'danger' : ''"
+      @click="toggleLikeOnProperty"
       class="heart-icon"
       :icon="icons.heart"
     ></ion-icon>
@@ -35,6 +36,7 @@
 
 <script lang="ts">
   import { defineComponent, PropType } from "vue";
+  import { useStore } from "vuex";
   import {
     IonCard,
     IonCardContent,
@@ -45,10 +47,14 @@
   } from "@ionic/vue";
   import { heart, star } from "ionicons/icons";
 
-  type rentMode = "rent" | "purchase";
+  import { rentMode } from "@/types";
 
   export default defineComponent({
     props: {
+      id: {
+        type: Number,
+        required: true,
+      },
       imageLink: {
         type: String,
         default: "https://bit.ly/3sd3wIC",
@@ -62,8 +68,8 @@
         default: "rent",
       },
       rating: {
-        type: String,
-        default: "4.8",
+        type: Number,
+        default: 4.8,
       },
       location: {
         type: String,
@@ -86,13 +92,22 @@
       IonChip,
       IonLabel,
     },
-    setup() {
+    setup(props) {
       const icons = {
         heart,
         star,
       };
 
-      return { icons };
+      const store = useStore();
+
+      const toggleLikeOnProperty = () => {
+        const { isLikedByUser, id } = props;
+        isLikedByUser
+          ? store.dispatch("dislikeProperty", id)
+          : store.dispatch("likeProperty", id);
+      };
+
+      return { toggleLikeOnProperty, icons };
     },
   });
 </script>

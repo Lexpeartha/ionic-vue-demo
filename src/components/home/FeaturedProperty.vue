@@ -6,19 +6,34 @@
     <router-link class="section-link" to="/app/explore">View all</router-link>
   </div>
   <div class="property-list ion-padding-start">
-    <property-card></property-card>
-    <property-card></property-card>
+    <property-card
+      v-for="(property, $i) in properties"
+      v-bind="property"
+      :key="$i"
+    ></property-card>
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue";
+  import { defineComponent, computed } from "vue";
+  import { useStore } from "vuex";
   import { IonLabel } from "@ionic/vue";
 
   import PropertyCard from "@/components/ui/PropertyCardVertical.vue";
 
   export default defineComponent({
     components: { IonLabel, PropertyCard },
+    setup() {
+      const store = useStore();
+
+      const properties = computed(() => {
+        return store.getters.getAllProperties;
+      });
+
+      return {
+        properties,
+      };
+    },
   });
 </script>
 
