@@ -116,13 +116,15 @@
 <style scoped>
   .card {
     flex: 0 0 auto;
+    width: 15em;
     border-radius: 1.5em;
     display: inline-block;
     position: relative;
   }
+
   .card-image {
     border-radius: 1em;
-    max-width: 15em;
+    max-width: 12.8em;
     object-fit: contain;
     position: relative;
   }

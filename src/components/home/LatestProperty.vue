@@ -5,13 +5,35 @@
     >
     <router-link class="section-link" to="/app/explore">View all</router-link>
   </div>
+  <div class="property-list ion-padding-start">
+    <property-card
+      v-for="(property, $index) in properties"
+      v-bind="property"
+      :key="$index"
+    ></property-card>
+  </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue";
+  import { defineComponent, computed } from "vue";
+  import { useStore } from "vuex";
   import { IonLabel } from "@ionic/vue";
+
+  import PropertyCard from "@/components/ui/PropertyCardVertical.vue";
+
   export default defineComponent({
-    components: { IonLabel },
+    components: { PropertyCard, IonLabel },
+    setup() {
+      const store = useStore();
+
+      const properties = computed(() => {
+        return store.getters.getAllProperties;
+      });
+
+      return {
+        properties,
+      };
+    },
   });
 </script>
 
