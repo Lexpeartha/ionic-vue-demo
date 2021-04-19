@@ -7,9 +7,9 @@
   </div>
   <div class="property-list ion-padding-start">
     <property-card
-      v-for="(property, $i) in properties"
+      v-for="(property, $index) in properties"
       v-bind="property"
-      :key="$i"
+      :key="$index"
     ></property-card>
   </div>
 </template>
