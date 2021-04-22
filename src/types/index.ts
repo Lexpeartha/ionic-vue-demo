@@ -14,4 +14,11 @@ interface IProperty {
   price: number;
 }
 
-export { rentMode, propertyTags, IProperty };
+type supportedLocale = "en" | "rs";
+
+type formattedTitle = {
+  emphasizedPart: string;
+  regularPart: string[];
+};
+
+export { rentMode, propertyTags, IProperty, supportedLocale, formattedTitle };
