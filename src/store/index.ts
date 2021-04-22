@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 
-import { IProperty } from "@/types";
+import { IProperty, propertyTags } from "@/types";
 
 const store = createStore({
   state: {
@@ -8,21 +8,23 @@ const store = createStore({
       {
         id: 1,
         imageLink: "https://bit.ly/3sd3wIC",
-        name: "Mansion in Dedinje",
+        name: "Villa in Dedinje",
         isLikedByUser: false,
         rentMode: "rent",
         rating: 4.8,
         location: "Belgrade",
+        tags: ["villa"] as propertyTags[],
         price: 3599.99,
       },
       {
         id: 2,
         imageLink: "https://bit.ly/3x7wYDe",
-        name: "Mansion in New Belgrade",
+        name: "Villa in New Belgrade",
         isLikedByUser: false,
         rentMode: "rent",
         rating: 4.6,
         location: "Belgrade",
+        tags: ["villa"] as propertyTags[],
         price: 4699.99,
       },
     ] as IProperty[],

@@ -1,5 +1,7 @@
 type rentMode = "rent" | "purchase";
 
+type propertyTags = "villa" | "house" | "apartment";
+
 interface IProperty {
   id: number;
   imageLink: string;
@@ -8,7 +10,8 @@ interface IProperty {
   rentMode: rentMode;
   rating: number;
   location: string;
+  tags: propertyTags[];
   price: number;
 }
 
-export { IProperty, rentMode };
+export { rentMode, propertyTags, IProperty };
