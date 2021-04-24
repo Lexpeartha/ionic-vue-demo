@@ -1,9 +1,11 @@
 {
     "en": {
+        "languageName": "English",
         "featuredSectionTitle": "Featured property",
         "latestSectionTitle": "Latest property"
     },
     "rs": {
+        "languageName": "Srpski",
         "featuredSectionTitle": "Istaknute zgrade",
         "latestSectionTitle": "Najnovije zgrade"
     }
