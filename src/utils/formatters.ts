@@ -6,14 +6,10 @@ const titleFormatter = (title: string): formattedTitle => {
   const emphasizedPart = sectionTitleWords[0];
   const regularPart = sectionTitleWords.splice(1, 1);
 
-  const formattedTitle = {
+  return {
     emphasizedPart,
     regularPart,
-  };
-
-  return formattedTitle;
+  } as formattedTitle;
 };
 
-export {
-  titleFormatter,
-};
+export { titleFormatter };
