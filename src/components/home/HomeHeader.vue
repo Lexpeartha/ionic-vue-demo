@@ -10,7 +10,7 @@
       v-model="selectedCityIndex"
       @ionChange="emitUpdate"
       class="city-selection"
-      placeholder="Select city"
+      :placeholder="textData.searchCity"
       ok-text="Select"
       cancel-text="Dismiss"
     >
@@ -36,7 +36,8 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref } from "vue";
+  import { defineComponent, ref, reactive } from "vue";
+  import { useI18n } from "vue-i18n";
   import {
     IonToolbar,
     IonButton,
@@ -67,6 +68,8 @@
       IonSelectOption,
     },
     setup(props, { emit }) {
+      const { t } = useI18n();
+
       const cities = ["Belgrade", "Novi Sad", "Zrenjanin", "Loznica"];
 
       const selectedCityIndex = ref(props.modelValue);
@@ -82,6 +85,10 @@
         profile: personCircle,
       };
 
+      const textData = reactive({
+        searchCity: t("components.homeHeader.selectCity"),
+      });
+
       return {
         icons,
         selectedCityIndex,
@@ -89,6 +96,7 @@
         emitUpdate,
         openMenu,
         closeMenu,
+        textData,
       };
     },
   });

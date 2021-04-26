@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="rent-chip">
-      <ion-label color="light">{{ rentMode }}</ion-label>
+      <ion-label color="light">{{ textData.rentMode }}</ion-label>
     </div>
     <div class="heart-chip" @click="toggleLikeOnProperty">
       <ion-icon
@@ -38,8 +38,9 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, PropType } from "vue";
+  import { defineComponent, PropType, reactive } from "vue";
   import { useStore } from "vuex";
+  import { useI18n } from "vue-i18n";
   import {
     IonCard,
     IonCardContent,
@@ -100,6 +101,7 @@
       };
 
       const store = useStore();
+      const { t } = useI18n();
 
       const toggleLikeOnProperty = () => {
         const { isLikedByUser, id } = props;
@@ -108,7 +110,14 @@
           : store.dispatch("likeProperty", id);
       };
 
-      return { toggleLikeOnProperty, icons };
+      const textData = reactive({
+        rentMode:
+          props.rentMode == "rent"
+            ? t("components.rentMode.rent")
+            : t("components.rentMode.purchase"),
+      });
+
+      return { toggleLikeOnProperty, icons, textData };
     },
   });
 </script>

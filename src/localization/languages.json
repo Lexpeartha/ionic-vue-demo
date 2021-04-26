@@ -1,12 +1,78 @@
 {
-    "en": {
-        "languageName": "English",
+  "en": {
+    "languageName": "English",
+    "components": {
+      "rentMode": {
+        "rent": "Rent",
+        "purchase": "Purchase"
+      },
+      "homeHeader": {
+        "selectCity": "Select city"
+      },
+      "property": {
         "featuredSectionTitle": "Featured property",
-        "latestSectionTitle": "Latest property"
+        "latestSectionTitle": "Latest property",
+        "viewAllText": "View all"
+      }
     },
-    "rs": {
-        "languageName": "Srpski",
-        "featuredSectionTitle": "Istaknute zgrade",
-        "latestSectionTitle": "Najnovije zgrade"
+    "app": {
+      "freeMemership": "Free membership",
+      "premiumMembership": "Premium membership",
+      "menu": {
+        "quickAccessMenu": {
+          "title": "Quick access menu",
+          "recent": "Recently viewed",
+          "saved": "Saved estates"
+        }
+      },
+      "navigation": {
+        "menuTitle": "Navigate app",
+        "home": "Home",
+        "explore": "Explore",
+        "search": "Search",
+        "profile": "Profile"
+      },
+      "settings": {
+        "title": "Settings"
+      }
     }
+  },
+  "rs": {
+    "languageName": "Srpski",
+    "components": {
+      "rentMode": {
+        "rent": "Zakup",
+        "purchase": "Kupi"
+      },
+      "homeHeader": {
+        "selectCity": "Izaberi grad"
+      },
+      "property": {
+        "featuredSectionTitle": "Istaknute zgrade",
+        "latestSectionTitle": "Najnovije zgrade",
+        "viewAllText": "Vidi sve"
+      }
+    },
+    "app": {
+      "freeMembership": "Besplatno članstvo",
+      "premiumMembership": "Premijum članostvo",
+      "menu": {
+        "quickAccessMenu": {
+          "title": "Brzi pristup",
+          "recent": "Nedavno pregledane",
+          "saved": "Sačuvane zgrade"
+        }
+      },
+      "navigation": {
+        "menuTitle": "Navigacija",
+        "home": "Početna",
+        "explore": "Istraži",
+        "search": "Pronađi",
+        "profile": "Nalog"
+      },
+      "settings": {
+        "title": "Podešavanja"
+      }
+    }
+  }
 }

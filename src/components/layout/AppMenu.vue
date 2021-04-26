@@ -10,7 +10,7 @@
       <ion-card class="profile-card ion-padding-end" color="primary">
         <ion-card-header class="profile-header">
           <ion-card-title>Username</ion-card-title>
-          <ion-card-subtitle>Free membership</ion-card-subtitle>
+          <ion-card-subtitle>{{ textData.membership }}</ion-card-subtitle>
         </ion-card-header>
 
         <ion-icon class="profile-picture" :icon="icons.profile"></ion-icon>
@@ -19,7 +19,7 @@
       <ion-list>
         <ion-list-header class="ion-padding-top">
           <ion-label class="menu-label" color="secondary">
-            Quick access menu
+            {{ textData.quickAccessMenuTitle }}
           </ion-label>
         </ion-list-header>
 
@@ -38,7 +38,7 @@
       <ion-list>
         <ion-list-header class="ion-padding-top">
           <ion-label class="menu-label" color="secondary">
-            Navigate app
+            {{ textData.navigationMenuTitle }}
           </ion-label>
         </ion-list-header>
 
@@ -74,8 +74,9 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue";
+  import { defineComponent, reactive } from "vue";
   import { useRouter } from "vue-router";
+  import { useI18n } from "vue-i18n";
   import {
     IonMenu,
     IonCard,
@@ -127,6 +128,8 @@
     setup() {
       const router = useRouter();
 
+      const { t } = useI18n();
+
       const icons = {
         home,
         search,
@@ -140,33 +143,33 @@
 
       const quickMenuItems = [
         {
-          name: "Recently viewed",
+          name: t("app.menu.quickAccessMenu.recent"),
           icon: icons.eye,
         },
         {
-          name: "Saved estates",
+          name: t("app.menu.quickAccessMenu.saved"),
           icon: icons.save,
         },
       ];
 
       const menuItems = [
         {
-          name: "Home",
+          name: t("app.navigation.home"),
           icon: icons.home,
           route: "/app/home",
         },
         {
-          name: "Explore",
+          name: t("app.navigation.explore"),
           icon: icons.explore,
           route: "/app/explore",
         },
         {
-          name: "Search",
+          name: t("app.navigation.search"),
           icon: icons.search,
           route: "/app/search",
         },
         {
-          name: "Profile",
+          name: t("app.navigation.profile"),
           icon: icons.info,
           route: "/app/profile",
         },
@@ -179,11 +182,18 @@
         closeMenu();
       };
 
+      const textData = reactive({
+        membership: t("app.freeMembership"),
+        quickAccessMenuTitle: t("app.menu.quickAccessMenu.title"),
+        navigationMenuTitle: t("app.navigation.menuTitle"),
+      });
+
       return {
         quickMenuItems,
         menuItems,
         icons,
         navigateToRoute,
+        textData,
       };
     },
   });

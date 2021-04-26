@@ -1,12 +1,14 @@
 <template>
   <div class="title-section ion-padding">
     <ion-label class="section-title">
-      <strong> {{ title.emphasizedPart + " " }} </strong>
-      <span v-for="(word, $index) in title.regularPart" :key="$index">
+      <strong> {{ textData.title.emphasizedPart + " " }} </strong>
+      <span v-for="(word, $index) in textData.title.regularPart" :key="$index">
         {{ word }}
       </span>
     </ion-label>
-    <router-link class="section-link" to="/app/explore">View all</router-link>
+    <router-link class="section-link" to="/app/explore">{{
+      textData.viewAll
+    }}</router-link>
   </div>
   <div class="property-list ion-padding-start">
     <property-card
@@ -18,10 +20,10 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, computed } from "vue";
+  import { defineComponent, computed, reactive } from "vue";
   import { useStore } from "vuex";
-  import { IonLabel } from "@ionic/vue";
   import { useI18n } from "vue-i18n";
+  import { IonLabel } from "@ionic/vue";
 
   import { titleFormatter } from "@/utils/formatters";
   import PropertyCard from "@/components/ui/PropertyCardVertical.vue";
@@ -32,16 +34,21 @@
       const store = useStore();
       const { t } = useI18n();
 
-      const title = t("latestSectionTitle");
-      const formattedTitle = titleFormatter(title);
-
       const properties = computed(() => {
         return store.getters.getAllProperties;
       });
 
+      const title = t("components.property.latestSectionTitle");
+      const formattedTitle = titleFormatter(title);
+      const viewAllText = t("components.property.viewAllText");
+      const textData = reactive({
+        title: formattedTitle,
+        viewAll: viewAllText,
+      });
+
       return {
         properties,
-        title: formattedTitle,
+        textData,
       };
     },
   });

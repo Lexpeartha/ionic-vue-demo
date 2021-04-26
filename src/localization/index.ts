@@ -5,14 +5,14 @@ import { checkForLocale } from "@/utils/locale";
 
 import languages from "./languages.json";
 
-const preferedLocale: supportedLocale = checkForLocale();
+const preferredLocale: supportedLocale = checkForLocale();
 const fallbackLocale = "en";
 
 const messages = languages;
 
 const i18n = createI18n({
   legacy: false,
-  locale: preferedLocale,
+  locale: preferredLocale,
   fallbackLocale: fallbackLocale,
   messages,
 });
