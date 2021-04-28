@@ -25,6 +25,7 @@
 
         <ion-item
           button
+          @click="navigateToNewRoute(item.routeName)"
           detail="false"
           lines="none"
           v-for="(item, $index) in quickMenuItems"
@@ -44,7 +45,7 @@
 
         <ion-item
           button
-          @click="navigateToRoute(item.route)"
+          @click="navigateToTabRoute(item.routePath)"
           detail="false"
           lines="none"
           v-for="(item, $index) in menuItems"
@@ -64,7 +65,11 @@
           </ion-button>
         </ion-buttons>
         <ion-buttons slot="end">
-          <ion-button color="secondary" detail="false">
+          <ion-button
+            @click="navigateToNewRoute('Settings')"
+            color="secondary"
+            detail="false"
+          >
             <ion-icon slot="icon-only" :icon="icons.settings"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -145,10 +150,12 @@
         {
           name: t("app.menu.quickAccessMenu.recent"),
           icon: icons.eye,
+          routeName: "Recent",
         },
         {
           name: t("app.menu.quickAccessMenu.saved"),
           icon: icons.save,
+          routeName: "Saved",
         },
       ];
 
@@ -156,30 +163,35 @@
         {
           name: t("app.navigation.home"),
           icon: icons.home,
-          route: "/app/home",
+          routePath: "/app/home",
         },
         {
           name: t("app.navigation.explore"),
           icon: icons.explore,
-          route: "/app/explore",
+          routePath: "/app/explore",
         },
         {
           name: t("app.navigation.search"),
           icon: icons.search,
-          route: "/app/search",
+          routePath: "/app/search",
         },
         {
           name: t("app.navigation.profile"),
           icon: icons.info,
-          route: "/app/profile",
+          routePath: "/app/profile",
         },
       ];
 
       const { closeMenu } = useMenu();
 
-      const navigateToRoute = (routeName: string) => {
-        router.replace({ path: routeName });
+      const navigateToTabRoute = (routePath: string) => {
+        router.replace({ path: routePath });
         closeMenu();
+      };
+
+      const navigateToNewRoute = (routeName: string) => {
+        router.push({ name: routeName });
+        setTimeout(closeMenu, 200);
       };
 
       const textData = reactive({
@@ -192,7 +204,8 @@
         quickMenuItems,
         menuItems,
         icons,
-        navigateToRoute,
+        navigateToTabRoute,
+        navigateToNewRoute,
         textData,
       };
     },

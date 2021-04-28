@@ -1,4 +1,3 @@
-import { useI18n } from "vue-i18n";
 import { supportedLocale } from "@/types";
 
 const localeAccessName = "locale";
@@ -13,10 +12,7 @@ const setLocalStorageLocale = (newLocale: supportedLocale): void => {
 };
 
 const updateLocale = (newLocale: supportedLocale): void => {
-  setLocalStorageLocale(newLocale);
-  // Initiates & updates global i18n object's locale
-  const i18n = useI18n();
-  i18n.locale.value = newLocale;
+  return setLocalStorageLocale(newLocale);
 };
 
 const checkForLocale = (): supportedLocale => {

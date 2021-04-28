@@ -36,6 +36,11 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
+  {
+    path: "/settings",
+    name: "Settings",
+    component: () => import("@/pages/Settings.vue"),
+  },
 ];
 
 const router = createRouter({

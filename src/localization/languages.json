@@ -16,7 +16,7 @@
       }
     },
     "app": {
-      "freeMemership": "Free membership",
+      "freeMembership": "Free membership",
       "premiumMembership": "Premium membership",
       "menu": {
         "quickAccessMenu": {
