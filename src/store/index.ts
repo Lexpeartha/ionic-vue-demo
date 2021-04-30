@@ -14,7 +14,7 @@ const store = createStore({
         rating: 4.8,
         location: "Belgrade",
         tags: ["villa"] as propertyTags[],
-        price: 3599.99,
+        price: 1099.99,
       },
       {
         id: 2,
@@ -25,13 +25,28 @@ const store = createStore({
         rating: 4.6,
         location: "Belgrade",
         tags: ["villa"] as propertyTags[],
-        price: 4699.99,
+        price: 1499.99,
+      },
+      {
+        id: 3,
+        imageLink: "https://bit.ly/3nv2nex",
+        name: "House in Zrenjanin",
+        isLikedByUser: false,
+        rentMode: "purchase",
+        rating: 4.9,
+        location: "Zrenjanin",
+        tags: ["house"] as propertyTags[],
+        price: 10499.99,
       },
     ] as IProperty[],
   },
   getters: {
     getAllProperties(state) {
       return state.allProperties;
+    },
+    getAllPropertiesByLocation(state) {
+      return (location: string) =>
+        state.allProperties.filter(property => property.location == location);
     },
     getPropertyById(state) {
       return (id: number) =>
@@ -54,6 +69,9 @@ const store = createStore({
     dislikeProperty({ getters, commit }, propertyId: number) {
       const property: IProperty = getters.getPropertyById(propertyId);
       commit("DISLIKE_PROPERTY", property);
+    },
+    findPropertiesInLocation({ getters }, location: string) {
+      return getters.getAllPropertiesByLocation(location);
     },
   },
 });

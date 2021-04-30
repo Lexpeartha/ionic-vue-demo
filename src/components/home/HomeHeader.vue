@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref, reactive } from "vue";
+  import { defineComponent, ref, reactive, watchEffect } from "vue";
   import { useI18n } from "vue-i18n";
   import {
     IonToolbar,
@@ -49,9 +49,10 @@
   import { menu, personCircle } from "ionicons/icons";
 
   import useMenu from "@/compositions/useMenu";
+  import { city } from "@/types";
 
   export default defineComponent({
-    emits: ["update:modelValue"],
+    emits: ["update:modelValue", "cityChanged"],
     props: {
       modelValue: {
         type: Number,
@@ -70,13 +71,22 @@
     setup(props, { emit }) {
       const { t } = useI18n();
 
-      const cities = ["Belgrade", "Novi Sad", "Zrenjanin", "Loznica"];
+      const cities: city[] = ["Belgrade", "Novi Sad", "Zrenjanin", "Loznica"];
 
-      const selectedCityIndex = ref(props.modelValue);
+      const selectedCityIndex = ref<number | null>(props.modelValue);
 
       const emitUpdate = () => {
-        emit("update:modelValue", selectedCityIndex.value);
+        const $cityIndex = selectedCityIndex.value;
+        emit("update:modelValue", $cityIndex);
+        emit("cityChanged", cities[$cityIndex as number]);
       };
+
+      // If v-model's value changes, we need to remove city's text in select component
+      watchEffect(() => {
+        if (props.modelValue == null) {
+          selectedCityIndex.value = null;
+        }
+      });
 
       const { openMenu, closeMenu } = useMenu();
 

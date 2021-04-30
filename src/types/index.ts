@@ -2,6 +2,8 @@ type rentMode = "rent" | "purchase";
 
 type propertyTags = "villa" | "house" | "apartment";
 
+type city = "Belgrade" | "Novi Sad" | "Zrenjanin" | "Loznica";
+
 interface IProperty {
   id: number;
   imageLink: string;
@@ -9,7 +11,7 @@ interface IProperty {
   isLikedByUser: boolean;
   rentMode: rentMode;
   rating: number;
-  location: string;
+  location: city;
   tags: propertyTags[];
   price: number;
 }
@@ -21,4 +23,11 @@ type formattedTitle = {
   regularPart: string[];
 };
 
-export { rentMode, propertyTags, IProperty, supportedLocale, formattedTitle };
+export {
+  rentMode,
+  propertyTags,
+  city,
+  IProperty,
+  supportedLocale,
+  formattedTitle,
+};

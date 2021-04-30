@@ -12,6 +12,7 @@
       "property": {
         "featuredSectionTitle": "Featured property",
         "latestSectionTitle": "Latest property",
+        "searchPropertyTitle": "Properties in {city}",
         "viewAllText": "View all"
       }
     },
@@ -50,6 +51,7 @@
       "property": {
         "featuredSectionTitle": "Istaknute zgrade",
         "latestSectionTitle": "Najnovije zgrade",
+        "searchPropertyTitle": "Zgrade u gradu {city}",
         "viewAllText": "Vidi sve"
       }
     },
