@@ -15,6 +15,11 @@ const store = createStore({
         location: "Belgrade",
         tags: ["villa"] as propertyTags[],
         price: 1099.99,
+        description: `
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis turpis mauris.
+        Etiam viverra elit vitae nulla suscipit finibus. Vestibulum iaculis lectus malesuada aliquet fringilla.
+        Nullam ac pellentesque est, ac dictum nunc. Mauris egestas!
+        `,
       },
       {
         id: 2,
@@ -26,6 +31,11 @@ const store = createStore({
         location: "Belgrade",
         tags: ["villa"] as propertyTags[],
         price: 1499.99,
+        description: `
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis turpis mauris.
+        Etiam viverra elit vitae nulla suscipit finibus. Vestibulum iaculis lectus malesuada aliquet fringilla.
+        Nullam ac pellentesque est, ac dictum nunc. Mauris egestas!
+        `,
       },
       {
         id: 3,
@@ -37,6 +47,11 @@ const store = createStore({
         location: "Zrenjanin",
         tags: ["house"] as propertyTags[],
         price: 10499.99,
+        description: `
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis turpis mauris.
+        Etiam viverra elit vitae nulla suscipit finibus. Vestibulum iaculis lectus malesuada aliquet fringilla.
+        Nullam ac pellentesque est, ac dictum nunc. Mauris egestas!
+        `,
       },
     ] as IProperty[],
   },

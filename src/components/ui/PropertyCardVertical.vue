@@ -1,9 +1,12 @@
 <template>
   <ion-card class="card">
-    <ion-card-content class="card-content">
+    <ion-card-content
+      @click="navigateToPropertyDetailsPage"
+      class="card-content"
+    >
       <img class="card-image" :src="imageLink" alt="Image description" />
     </ion-card-content>
-    <div class="ion-padding-horizontal">
+    <div @click="navigateToPropertyDetailsPage" class="ion-padding-horizontal">
       <ion-text color="primary">
         <h2 class="price">{{ price }}$</h2>
       </ion-text>
@@ -39,6 +42,7 @@
 
 <script lang="ts">
   import { defineComponent, PropType, reactive } from "vue";
+  import { useRouter } from "vue-router";
   import { useStore } from "vuex";
   import { useI18n } from "vue-i18n";
   import {
@@ -101,6 +105,7 @@
       };
 
       const store = useStore();
+      const router = useRouter();
       const { t } = useI18n();
 
       const toggleLikeOnProperty = () => {
@@ -110,6 +115,10 @@
           : store.dispatch("likeProperty", id);
       };
 
+      const navigateToPropertyDetailsPage = () => {
+        router.push({ name: "PropertyDetails", params: { id: props.id } });
+      };
+
       const textData = reactive({
         rentMode:
           props.rentMode == "rent"
@@ -117,7 +126,12 @@
             : t("components.rentMode.purchase"),
       });
 
-      return { toggleLikeOnProperty, icons, textData };
+      return {
+        toggleLikeOnProperty,
+        navigateToPropertyDetailsPage,
+        icons,
+        textData,
+      };
     },
   });
 </script>

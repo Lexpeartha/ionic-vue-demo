@@ -14,6 +14,7 @@ interface IProperty {
   location: city;
   tags: propertyTags[];
   price: number;
+  description?: string;
 }
 
 type supportedLocale = "en" | "rs";

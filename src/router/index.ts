@@ -37,6 +37,11 @@ const routes: Array<RouteRecordRaw> = [
     ],
   },
   {
+    path: "/property/:id",
+    name: "PropertyDetails",
+    component: () => import("@/pages/Property.vue"),
+  },
+  {
     path: "/settings",
     name: "Settings",
     component: () => import("@/pages/Settings.vue"),

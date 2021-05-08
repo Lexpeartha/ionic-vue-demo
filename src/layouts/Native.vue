@@ -9,7 +9,10 @@
       </template>
     </app-header>
 
-    <ion-content class="ion-padding" :fullscreen="true">
+    <ion-content
+      :class="includePadding ? 'ion-padding' : ''"
+      :fullscreen="true"
+    >
       <slot />
     </ion-content>
   </ion-page>
@@ -28,6 +31,11 @@
       pageDefaultBackLink: {
         type: String,
         required: false,
+      },
+      includePadding: {
+        type: Boolean,
+        required: false,
+        default: true,
       },
     },
     components: {
