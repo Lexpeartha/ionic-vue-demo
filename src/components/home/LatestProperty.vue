@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, computed, reactive } from "vue";
+  import { defineComponent, computed,  } from "vue";
   import { useStore } from "vuex";
   import { useI18n } from "vue-i18n";
   import { IonLabel } from "@ionic/vue";
@@ -41,10 +41,10 @@
       const title = t("components.property.latestSectionTitle");
       const formattedTitle = titleFormatter(title);
       const viewAllText = t("components.property.viewAllText");
-      const textData = reactive({
+      const textData = {
         title: formattedTitle,
         viewAll: viewAllText,
-      });
+      };
 
       return {
         properties,

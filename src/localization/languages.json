@@ -13,7 +13,12 @@
         "featuredSectionTitle": "Featured property",
         "latestSectionTitle": "Latest property",
         "searchPropertyTitle": "Properties in {city}",
-        "viewAllText": "View all"
+        "viewAllText": "View all",
+        "location": "Location",
+        "price": "Price",
+        "rentMode": "Payment type",
+        "tags": "Tags",
+        "description": "Description"
       }
     },
     "app": {
@@ -35,6 +40,9 @@
       },
       "settings": {
         "title": "Settings"
+      },
+      "toasts": {
+        "changedLocale": "For locale to apply fully, you may need to restart the app"
       }
     }
   },
@@ -52,7 +60,12 @@
         "featuredSectionTitle": "Istaknute zgrade",
         "latestSectionTitle": "Najnovije zgrade",
         "searchPropertyTitle": "Zgrade u gradu {city}",
-        "viewAllText": "Vidi sve"
+        "viewAllText": "Vidi sve",
+        "location": "Lokacija",
+        "price": "Cena",
+        "rentMode": "Tip plaćanja",
+        "tags": "Tagovi",
+        "description": "Opis"
       }
     },
     "app": {
@@ -74,6 +87,9 @@
       },
       "settings": {
         "title": "Podešavanja"
+      },
+      "toasts": {
+        "changedLocale": "Da bi se jezik potpuno primenio, možda je potrebno restartovati aplikaciju"
       }
     }
   }

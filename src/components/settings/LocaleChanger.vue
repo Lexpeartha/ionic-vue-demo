@@ -5,21 +5,27 @@
     @ionChange="changeToNewLocale"
   >
     <ion-select-option
-      v-for="(locale, $index) in availableLocales"
+      v-for="(lang, $index) in langs"
       :key="$index"
-      :value="locale"
-      >{{ locale }}</ion-select-option
+      :value="lang.code"
+      >{{ lang.name }}</ion-select-option
     >
   </ion-select>
 </template>
 
 <script lang="ts">
-  import { defineComponent, reactive } from "vue";
+  import { defineComponent, ref, onBeforeMount } from "vue";
   import { useI18n } from "vue-i18n";
   import { IonSelect, IonSelectOption, toastController } from "@ionic/vue";
 
   import { supportedLocale } from "@/types";
   import { updateLocale } from "@/utils/locale";
+  import languages from "@/localization/languages.json";
+
+  interface LocaleEntry {
+    name: string;
+    code: string;
+  }
 
   export default defineComponent({
     components: {
@@ -27,30 +33,39 @@
       IonSelectOption,
     },
     setup() {
-      const { t, locale, availableLocales } = useI18n();
+      const { t, locale } = useI18n();
 
       const currentLocale = locale;
-
-      const textData = reactive({
-        name: t("not-implemented-yet"),
-      });
 
       const changeToNewLocale = async (/* changeEvent: CustomEvent */) => {
         updateLocale(currentLocale.value as supportedLocale);
         const toast = await toastController.create({
-          message: "For locale to apply fully, you may need to restart the app",
+          message: t("app.toasts.changedLocale"),
           position: "bottom",
-          duration: 1800,
+          duration: 2000,
         });
 
         toast.present();
       };
 
+      const langs = ref<LocaleEntry[]>([]);
+
+      onBeforeMount(() => {
+        Object.entries(languages).map(value => {
+          const langName = value[1].languageName;
+          const localeCode = value[0];
+
+          langs.value.push({
+            name: `${langName} (${localeCode})`,
+            code: localeCode,
+          });
+        });
+      });
+
       return {
         changeToNewLocale,
-        availableLocales,
         currentLocale,
-        textData,
+        langs,
       };
     },
   });

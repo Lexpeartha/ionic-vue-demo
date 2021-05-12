@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, reactive, computed, watchEffect } from "vue";
+  import { defineComponent, computed, watchEffect } from "vue";
   import { useStore } from "vuex";
   import { useI18n } from "vue-i18n";
   import { IonLabel } from "@ionic/vue";
@@ -47,11 +47,11 @@
         store.getters.getAllPropertiesByLocation(props.location)
       );
 
-      const textData = reactive({
+      const textData = {
         title: t("components.property.searchPropertyTitle", {
           city: props.location,
         }),
-      });
+      };
 
       watchEffect(() => {
         textData.title = t("components.property.searchPropertyTitle", {

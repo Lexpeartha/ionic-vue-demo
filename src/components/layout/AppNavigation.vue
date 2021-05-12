@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts">
-  import { ref, reactive, defineComponent } from "vue";
+  import { ref, defineComponent } from "vue";
   import { useI18n } from "vue-i18n";
   import { IonTabBar, IonTabButton, IonIcon, IonLabel } from "@ionic/vue";
   import { home, map, search, personCircle } from "ionicons/icons";
@@ -88,12 +88,12 @@
       //   navigateToTabLink(navItem.route);
       // };
 
-      const textData = reactive({
+      const textData = {
         home: t("app.navigation.home"),
         explore: t("app.navigation.explore"),
         search: t("app.navigation.search"),
         profile: t("app.navigation.profile"),
-      });
+      };
 
       return {
         selectedTabBar,

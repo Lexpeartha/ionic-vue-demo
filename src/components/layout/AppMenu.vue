@@ -79,7 +79,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, reactive } from "vue";
+  import { defineComponent } from "vue";
   import { useRouter } from "vue-router";
   import { useI18n } from "vue-i18n";
   import {
@@ -194,11 +194,11 @@
         setTimeout(closeMenu, 200);
       };
 
-      const textData = reactive({
+      const textData = {
         membership: t("app.freeMembership"),
         quickAccessMenuTitle: t("app.menu.quickAccessMenu.title"),
         navigationMenuTitle: t("app.navigation.menuTitle"),
-      });
+      };
 
       return {
         quickMenuItems,

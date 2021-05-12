@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, PropType, reactive } from "vue";
+  import { defineComponent, PropType, } from "vue";
   import { useRouter } from "vue-router";
   import { useStore } from "vuex";
   import { useI18n } from "vue-i18n";
@@ -119,12 +119,12 @@
         router.push({ name: "PropertyDetails", params: { id: props.id } });
       };
 
-      const textData = reactive({
+      const textData = {
         rentMode:
           props.rentMode == "rent"
             ? t("components.rentMode.rent")
             : t("components.rentMode.purchase"),
-      });
+      };
 
       return {
         toggleLikeOnProperty,

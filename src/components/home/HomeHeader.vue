@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref, reactive, watchEffect } from "vue";
+  import { defineComponent, ref, watchEffect } from "vue";
   import { useI18n } from "vue-i18n";
   import {
     IonToolbar,
@@ -95,9 +95,9 @@
         profile: personCircle,
       };
 
-      const textData = reactive({
+      const textData = {
         searchCity: t("components.homeHeader.selectCity"),
-      });
+      };
 
       return {
         icons,

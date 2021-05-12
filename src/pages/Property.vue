@@ -11,22 +11,30 @@
       </ion-title>
       <div class="property-info">
         <div class="info">
-          <ion-text class="info-title" color="primary">Location: </ion-text>
+          <ion-text class="info-title" color="primary"
+            >{{ textData.location }}:
+          </ion-text>
           <p>{{ property.location }}</p>
         </div>
 
         <div class="info">
-          <ion-text class="info-title" color="primary">Price: </ion-text>
+          <ion-text class="info-title" color="primary"
+            >{{ textData.price }}:
+          </ion-text>
           <p>{{ property.price }}$</p>
         </div>
 
         <div class="info">
-          <ion-text class="info-title" color="primary">Selling type: </ion-text>
-          <p>{{ property.rentMode }}</p>
+          <ion-text class="info-title" color="primary"
+            >{{ textData.rentMode }}:
+          </ion-text>
+          <p>{{ textData.rentType }}</p>
         </div>
 
         <div class="info">
-          <ion-text class="info-title" color="primary">Tags: </ion-text>
+          <ion-text class="info-title" color="primary"
+            >{{ textData.tags }}:
+          </ion-text>
           <p v-if="property.tags">
             <span :key="$index" v-for="(tag, $index) in property.tags">
               {{ tag }}
@@ -36,14 +44,16 @@
         </div>
 
         <div class="property-description">
-          <ion-text class="info-title" color="primary">Description: </ion-text>
+          <ion-text class="info-title" color="primary"
+            >{{ textData.description }}:
+          </ion-text>
           <p>{{ property.description }}</p>
         </div>
       </div>
 
       <div class="property-actions">
         <div class="buttons">
-          <ion-button>Purchase</ion-button>
+          <ion-button>{{ textData.rentType }}</ion-button>
           <ion-icon
             @click="togglePropertyLike"
             class="heart-icon"
@@ -65,9 +75,10 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, ref, onBeforeMount } from "vue";
+  import { defineComponent, ref } from "vue";
   import { useRoute } from "vue-router";
   import { useStore } from "vuex";
+  import { useI18n } from "vue-i18n";
   import { IonTitle, IonText, IonButton, IonIcon } from "@ionic/vue";
   import { heart, star } from "ionicons/icons";
 
@@ -85,13 +96,14 @@
     setup() {
       const store = useStore();
       const route = useRoute();
+      const { t } = useI18n();
 
       const property = ref<IProperty>({} as IProperty);
 
-      onBeforeMount(() => {
+      const getProperty = () => {
         const id = parseInt(route.params.id as string);
         property.value = store.getters.getPropertyById(id) as IProperty;
-      });
+      };
 
       const togglePropertyLike = () => {
         const actionString = property.value.isLikedByUser
@@ -105,9 +117,23 @@
         star,
       };
 
+      getProperty();
+
+      const textData = {
+        location: t("components.property.location"),
+        price: t("components.property.price"),
+        rentMode: t("components.property.rentMode"),
+        rentType: t(
+          `components.rentMode.${property.value.rentMode.toLowerCase()}`
+        ),
+        tags: t("components.property.tags"),
+        description: t("components.property.description"),
+      };
+
       return {
         property,
         togglePropertyLike,
+        textData,
         icons,
       };
     },

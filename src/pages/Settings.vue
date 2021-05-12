@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, reactive } from "vue";
+  import { defineComponent } from "vue";
   import { useI18n } from "vue-i18n";
 
   import NativeLayout from "@/layouts/Native.vue";
@@ -22,9 +22,9 @@
     setup() {
       const { t } = useI18n();
 
-      const textData = reactive({
+      const textData = {
         title: t("app.settings.title"),
-      });
+      };
 
       return {
         textData,
